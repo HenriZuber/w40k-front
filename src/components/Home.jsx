@@ -41,7 +41,7 @@ class Home extends React.Component {
             <div className="Home">
                 <header className="Home-header">
                     <img src={loading} className="Home-logo" alt="loading" />
-                    <h1>Hello from {this.state.title_from}</h1>
+                    <h1>Hello from: {this.state.title_from}</h1>
                 </header>
                 <div className="Body-button">
                     <button type="button" class="btn btn-primary" disabled={this.state.button_state} onClick={this.dispatch_workforce}> {this.state.button_text}
