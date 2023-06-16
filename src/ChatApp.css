@@ -60,7 +60,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1%;
+  padding: 2%;
   width: 75%;
   margin: 2% auto;
   background-color: var(--background-color-message-human);
@@ -130,11 +130,9 @@
     width: 90%;
   }
 
-  .chat-message {}
-
   .chat-input {
     width: 90%;
-    margin: 40px auto;
+    margin: 5% auto;
     padding-left: 10px;
     padding-right: 5px;
   }
