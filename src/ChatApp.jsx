@@ -6,6 +6,7 @@ const ChatApp = () => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const chatWindowRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const addMessage = (text, isUser = false) => {
     const newMessage = {
@@ -36,14 +37,14 @@ const ChatApp = () => {
     setInputValue('');
 
     try {
-      const response = await fetch('https://dummyjson.com/posts/add', {
+      setIsLoading(true);
+      const response = await fetch('https://1xwd1tvxjg.execute-api.eu-west-3.amazonaws.com/default/w40k-back-func', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          title: inputValue,
-          userId: 5,
+          query: inputValue,
         }),
       });
 
@@ -52,13 +53,17 @@ const ChatApp = () => {
       }
 
       const data = await response.json();
-      const botResponse = "I got " + data.title // JSON key
+      const parsed_body = JSON.parse(data.body)
+      const botResponse = parsed_body.message // JSON key
+      setIsLoading(false);
       addMessage(botResponse);
     } catch (error) {
+      setIsLoading(false);
       addMessage('Oops! Something went wrong.');
       addMessage(error.message);
     }
   };
+
 
   useEffect(() => {
     // Scroll to the bottom of the chat window when a new message is added
@@ -69,6 +74,16 @@ const ChatApp = () => {
   return (
     <div className="chat-app">
       <div className="chat-window" ref={chatWindowRef}>
+        {/* Render loading indicator while waiting for API response */}
+        {isLoading && (
+          <div className="message bot-message">
+            <div className="typing-indicator">
+              <span className="dot"></span>
+              <span className="dot"></span>
+              <span className="dot"></span>
+            </div>
+          </div>
+        )}
         {messages.map((message) => (
           <div
             key={message.id}
@@ -77,6 +92,7 @@ const ChatApp = () => {
             {message.text}
           </div>
         ))}
+
       </div>
       <form className="chat-input" onSubmit={handleSubmit}>
         <input
