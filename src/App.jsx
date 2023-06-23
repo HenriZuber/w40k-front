@@ -23,12 +23,15 @@ function App() {
   };
 
   return (
+    <>
     <header className="App-header">
-      <div>
+      <h3>Wahabot</h3>
+    </header>
+    <body className='App-body'>
         {activeComponent === "ChoiceDropdown" && <ChoiceDropdown onArmySaved={handleActiveComponent} />}
         {activeComponent === "ChatApp" && <ChatApp onSettingsClicked={handleActiveComponent} />}
-      </div>
-    </header>
+      </body>
+    </>
   );
 }
 

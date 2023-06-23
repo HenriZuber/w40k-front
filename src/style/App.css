@@ -1,20 +1,33 @@
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+body {
+  background-color: #30313b;
+}
+
 .App {
   text-align: center;
 }
 
 
 .App-header {
-  min-height: 100vh;
+  color: white;
+  text-align: center;
+  background-color: #444654;
+  border-radius: 0 0 20px 20px;
+}
+
+.App-body {
+  width: 100vw;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  --font-size-primary: 20px;
-  --background-color-primary: #30313b;
-  --background-color-secondary-light: #4e5161;
-  --background-color-secondary-dark: #444654;
-  height: 100vh;
-  width: 100%;
-  font-size: var(--font-size-primary);
-  background-color: var(--background-color-primary);
+  font-size: calc(10px + 2vmin);
   color: white;
 }

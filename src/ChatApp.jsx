@@ -93,7 +93,8 @@ const ChatApp = ({ onSettingsClicked }) => {
         ))}
 
       </div>
-      <form className="chat-input" onSubmit={handleSubmit}>
+      <div className="chat-input-wrapper">
+        <form className="chat-input" onSubmit={handleSubmit}>
         <input
           type="text"
           value={inputValue}
@@ -104,6 +105,7 @@ const ChatApp = ({ onSettingsClicked }) => {
           <IoSend />
         </button>
       </form>
+      </div>
     </div>
   );
 };

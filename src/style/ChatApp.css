@@ -1,17 +1,11 @@
 .chat-app {
   --font-size-primary: 20px;
   white-space: pre-line;
-  /*
-  --background-color-primary: #282424;
-  --background-color-message-human: #444654;
-  --background-color-message-bot: #353640;
-  */
-  --background-color-primary: #30313B;
-  --background-color-message-human: #4E5161;
+  --background-color-message-human: #5E6484;
   --background-color-message-bot: #444654;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   width: 100%;
   font-size: var(--font-size-primary);
@@ -24,7 +18,7 @@
   display: flex;
   flex-direction: column-reverse;
   overflow-y: scroll;
-  padding: 20px;
+  padding: 0 20px;
   width: 60%;
   /* Updated width */
   margin: 0 auto;
@@ -57,6 +51,7 @@
   background-color: var(--background-color-message-bot);
 }
 
+
 .chat-input {
   display: flex;
   justify-content: center;
@@ -64,7 +59,7 @@
   padding: 2%;
   width: 75%;
   margin: 2% auto;
-  background-color: var(--background-color-message-human);
+  background-color: var(--background-color-message-bot);
   border-radius: 15px;
   box-shadow: 0 0 transparent, 0 0 transparent, var(--tw-shadow);
   /* Add a subtle shadow */
@@ -78,23 +73,25 @@
   color: #f2f2f2;
   /* Increase the font size */
   border-radius: 4px;
+  text-align: left;
   /* Add a subtle shadow */
 }
 
 .chat-input button {
   background-color: transparent;
-  color: #888;
+  color: #d4d2d2;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: var(--font-size-primary);
   margin-left: 10px;
+  display: flex;
   /* Add a margin to separate the button from the input field */
 }
 
 
 .chat-input input::placeholder {
-  color: #888;
+  color: #d4d2d2;
 }
 
 .chat-input input:focus {
