@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
-import armiesData from './store/armies.json';
+import rules_pdfs_Data from './store/rules_pdfs.json';
 import './style/ChoiceDropdown.css';
 
 const ChoiceDropdown = ({ onArmySelect }) => {
@@ -11,7 +11,7 @@ const ChoiceDropdown = ({ onArmySelect }) => {
   };
 
   const handleSaveChoice = () => {
-    const coreBooksList = armiesData
+    const coreBooksList = rules_pdfs_Data
       .filter((army) => army.is_core)
       .map((army) => army.pdf_name);
 
@@ -21,7 +21,7 @@ const ChoiceDropdown = ({ onArmySelect }) => {
     onArmySelect();
   };
 
-  const filteredOptions = armiesData.filter((army) => army.is_core === false);
+  const filteredOptions = rules_pdfs_Data.filter((army) => army.is_core === false);
 
   return (
     <div className="choice-dropdown-main">
