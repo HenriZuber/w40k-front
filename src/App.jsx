@@ -6,30 +6,27 @@ import ChatApp from './ChatApp';
 
 function App() {
 
-  const [selectedChoice, setSelectedChoice] = useState("");
+  const [activeComponent, setActiveComponent] = useState("ChoiceDropdown");
 
   useEffect(() => {
     // Check if the choice is already saved in a cookie
     const savedChoice = Cookies.get('choice');
     if (savedChoice) {
       const choiceArray = JSON.parse(savedChoice);
-      setSelectedChoice(choiceArray);
+      console.log(choiceArray);
+      setActiveComponent("ChatApp");
     }
   }, []);
 
-  const handleArmySelected = () => {
-    const savedChoice = Cookies.get('choice');
-    if (savedChoice) {
-      const choiceArray = JSON.parse(savedChoice);
-      setSelectedChoice(choiceArray);
-    }
+  const handleActiveComponent = (componentName) => {
+    setActiveComponent(componentName);
   };
 
   return (
     <header className="App-header">
       <div>
-        {!selectedChoice && <ChoiceDropdown onArmySelect={handleArmySelected} />}
-        {selectedChoice && <ChatApp />}
+        {activeComponent === "ChoiceDropdown" && <ChoiceDropdown onArmySaved={handleActiveComponent} />}
+        {activeComponent === "ChatApp" && <ChatApp onSettingsClicked={handleActiveComponent} />}
       </div>
     </header>
   );

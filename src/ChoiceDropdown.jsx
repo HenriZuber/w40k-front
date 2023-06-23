@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import rules_pdfs_Data from './store/rules_pdfs.json';
 import './style/ChoiceDropdown.css';
 
-const ChoiceDropdown = ({ onArmySelect }) => {
+const ChoiceDropdown = ({ onArmySaved }) => {
   const [selectedChoice, setSelectedChoice] = useState('');
 
   const handleChoiceSelect = (event) => {
@@ -18,7 +18,7 @@ const ChoiceDropdown = ({ onArmySelect }) => {
     const choiceList = [...coreBooksList, selectedChoice]
     const cookieValue = JSON.stringify(choiceList);
     Cookies.set('choice', cookieValue);
-    onArmySelect();
+    onArmySaved("ChatApp");
   };
 
   const filteredOptions = rules_pdfs_Data.filter((army) => army.is_core === false);

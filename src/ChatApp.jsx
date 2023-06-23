@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { IoSend } from 'react-icons/io5';
 import './style/ChatApp.css';
 
-const ChatApp = () => {
+const ChatApp = ({ onSettingsClicked }) => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const chatWindowRef = useRef(null);
