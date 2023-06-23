@@ -79,6 +79,10 @@ const ChatApp = ({ onSettingsClicked }) => {
 
   return (
     <div className="chat-app">
+      <button id='settings-button' type="submit" onClick={handleSettingsClicked}>
+          <IoSettingsSharp />
+      </button>
+      
       <div className="chat-window" ref={chatWindowRef}>
         {/* Render loading indicator while waiting for API response */}
         {isLoading && (
@@ -112,9 +116,7 @@ const ChatApp = ({ onSettingsClicked }) => {
             <IoSend />
           </button>
         </form>
-        <button type="submit" onClick={handleSettingsClicked}>
-          <IoSettingsSharp />
-        </button>
+        
       </div>
     </div>
   );

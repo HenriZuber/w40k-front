@@ -1,0 +1,11 @@
+{
+    "[html]": {
+        "editor.formatOnSave": true
+    },
+    "[css]": {
+        "editor.formatOnSave": true
+    },
+    "[javascriptreact]": {
+        "editor.formatOnSave": true
+    }
+}
