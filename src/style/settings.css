@@ -59,7 +59,7 @@
 }
 
 .save-button {
-  position: absolute;
+  position: fixed;
   top: 15px;
   padding: 5px 10px;
   right: 20px;
@@ -73,7 +73,7 @@
 }
 
 #close-button {
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 20px;
   /* width: 50px;
