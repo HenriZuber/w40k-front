@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/w40k-front/static/css/main.ad14ef5f.css",
+    "main.css": "/w40k-front/static/css/main.b04f86f4.css",
     "main.js": "/w40k-front/static/js/main.0898506a.js",
     "index.html": "/w40k-front/index.html",
-    "main.ad14ef5f.css.map": "/w40k-front/static/css/main.ad14ef5f.css.map",
+    "main.b04f86f4.css.map": "/w40k-front/static/css/main.b04f86f4.css.map",
     "main.0898506a.js.map": "/w40k-front/static/js/main.0898506a.js.map"
   },
   "entrypoints": [
-    "static/css/main.ad14ef5f.css",
+    "static/css/main.b04f86f4.css",
     "static/js/main.0898506a.js"
   ]
 }
