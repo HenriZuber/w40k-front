@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { IoSend } from 'react-icons/io5';
-import './ChatApp.css';
+import './style/ChatApp.css';
 
 const ChatApp = () => {
   const [messages, setMessages] = useState([]);
@@ -68,7 +68,6 @@ const ChatApp = () => {
   useEffect(() => {
     // Scroll to the bottom of the chat window when a new message is added
     chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
-    messages.map((message) => (console.log(message.text + message.id)))
   }, [messages]);
 
   return (
