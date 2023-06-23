@@ -1,0 +1,22 @@
+[
+  {
+    "pdf_name": "Core_rules",
+    "label": "Core rules",
+    "is_core": true
+  },
+  {
+    "pdf_name": "Tyranids_index",
+    "label": "Tyranids",
+    "is_core": false
+  },
+  {
+    "pdf_name": "Adepta_Sororitas_index",
+    "label": "Adepta Sororitas",
+    "is_core": false
+  },
+  {
+    "pdf_name": "Adeptus_Custodes_index",
+    "label": "Adeptus Custodes",
+    "is_core": false
+  }
+]
