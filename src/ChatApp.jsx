@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { IoSend } from 'react-icons/io5';
+import Cookies from 'js-cookie';
+import { IoSend, IoSettingsSharp } from 'react-icons/io5';
 import './style/ChatApp.css';
 
 const ChatApp = ({ onSettingsClicked }) => {
@@ -27,6 +28,9 @@ const ChatApp = ({ onSettingsClicked }) => {
     };
   }, []);
 
+  const handleSettingsClicked = () => {
+    onSettingsClicked("Settings");
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,6 +42,8 @@ const ChatApp = ({ onSettingsClicked }) => {
 
     try {
       setIsLoading(true);
+      const savedChoice = Cookies.get('choice');
+      const choiceArray = JSON.parse(savedChoice);
       const response = await fetch('https://1xwd1tvxjg.execute-api.eu-west-3.amazonaws.com/default/w40k-back-func', {
         method: 'POST',
         headers: {
@@ -45,6 +51,7 @@ const ChatApp = ({ onSettingsClicked }) => {
         },
         body: JSON.stringify({
           query: inputValue,
+          sources_input: choiceArray,
         }),
       });
 
@@ -95,16 +102,19 @@ const ChatApp = ({ onSettingsClicked }) => {
       </div>
       <div className="chat-input-wrapper">
         <form className="chat-input" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Type your message..."
-        />
-        <button type="submit">
-          <IoSend />
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="Type your message..."
+          />
+          <button type="submit">
+            <IoSend />
+          </button>
+        </form>
+        <button type="submit" onClick={handleSettingsClicked}>
+          <IoSettingsSharp />
         </button>
-      </form>
       </div>
     </div>
   );

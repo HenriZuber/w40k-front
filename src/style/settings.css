@@ -1,1 +1,41 @@
-/* settings css */
+.settings-main {
+  --font-size-primary: 20px;
+  --background-settings-primary: #30313B;
+  --background-settings-message-human: #4E5161;
+  --background-settings-message-bot: #444654;
+  font-size: var(--font-size-primary);
+  background-color: var(--background-settings-primary);
+  overflow-y: scroll;
+}
+
+.category-name {
+  padding-top: 10px;
+}
+
+.column-parent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: minmax(auto, 1fr);
+  grid-gap: 10px;
+}
+
+.settings-button {
+  background-color: var(--background-dropdown-primary);
+  margin-left: 20px;
+  margin-top: 20px;
+  color: #ccc;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.settings-button:hover {
+  background-color: var(--background-dropdown-secondary-light);
+}
+
+.settings-button:active {
+  background-color: var(--background-dropdown-secondary-dark);
+}

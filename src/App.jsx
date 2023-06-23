@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import './style/App.css';
 import ChoiceDropdown from './ChoiceDropdown';
 import ChatApp from './ChatApp';
+import Settings from './Settings'
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
     if (savedChoice) {
       const choiceArray = JSON.parse(savedChoice);
       console.log(choiceArray);
-      setActiveComponent("ChatApp");
+      setActiveComponent("Settings");
     }
   }, []);
 
@@ -24,12 +25,13 @@ function App() {
 
   return (
     <>
-    <header className="App-header">
-      <h3>Wahabot</h3>
-    </header>
-    <body className='App-body'>
+      <header className="App-header">
+        <h3>Wahabot</h3>
+      </header>
+      <body className='App-body'>
         {activeComponent === "ChoiceDropdown" && <ChoiceDropdown onArmySaved={handleActiveComponent} />}
         {activeComponent === "ChatApp" && <ChatApp onSettingsClicked={handleActiveComponent} />}
+        {activeComponent === "Settings" && <Settings onSaveClicked={handleActiveComponent} />}
       </body>
     </>
   );

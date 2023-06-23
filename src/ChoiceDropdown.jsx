@@ -15,7 +15,7 @@ const ChoiceDropdown = ({ onArmySaved }) => {
       .filter((army) => army.is_core)
       .map((army) => army.pdf_name);
 
-    const choiceList = [...coreBooksList, selectedChoice]
+    const choiceList = [...coreBooksList, selectedChoice];
     const cookieValue = JSON.stringify(choiceList);
     Cookies.set('choice', cookieValue);
     onArmySaved("ChatApp");
