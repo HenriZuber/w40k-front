@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Cookies from 'js-cookie';
-import { IoSend, IoSettingsSharp } from 'react-icons/io5';
-import './style/ChatApp.css';
+import { IoSend, IoSettingsSharp, IoHelpCircleSharp } from 'react-icons/io5';
+import '../style/ChatApp.css';
 
-const ChatApp = ({ onSettingsClicked }) => {
+const ChatApp = ({ onNavClicked }) => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const chatWindowRef = useRef(null);
@@ -29,7 +29,11 @@ const ChatApp = ({ onSettingsClicked }) => {
   }, []);
 
   const handleSettingsClicked = () => {
-    onSettingsClicked("Settings");
+    onNavClicked("Settings");
+  }
+
+  const handleHelpClicked = () => {
+    onNavClicked("HelpApp");
   }
 
   const handleSubmit = async (e) => {
@@ -80,9 +84,13 @@ const ChatApp = ({ onSettingsClicked }) => {
   return (
     <div className="chat-app">
       <button id='settings-button' type="submit" onClick={handleSettingsClicked}>
-          <IoSettingsSharp />
+        <IoSettingsSharp />
       </button>
-      
+
+      <button id='help-button' type="submit" onClick={handleHelpClicked}>
+        <IoHelpCircleSharp />
+      </button>
+
       <div className="chat-window" ref={chatWindowRef}>
         {/* Render loading indicator while waiting for API response */}
         {isLoading && (
@@ -116,7 +124,7 @@ const ChatApp = ({ onSettingsClicked }) => {
             <IoSend />
           </button>
         </form>
-        
+
       </div>
     </div>
   );

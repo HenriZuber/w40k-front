@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
-import rules_pdfs_Data from './store/rules_pdfs.json';
-import './style/ChoiceDropdown.css';
+import rules_pdfs_Data from '../store/rules_pdfs.json';
+import env_data from "../store/env.json";
+import '../style/ChoiceDropdown.css';
 
 const ChoiceDropdown = ({ onArmySaved }) => {
   const [selectedChoice, setSelectedChoice] = useState('');
+  const cookieDuration = env_data.cookieDuration;
 
   const handleChoiceSelect = (event) => {
     setSelectedChoice(event.target.value);
@@ -17,7 +19,8 @@ const ChoiceDropdown = ({ onArmySaved }) => {
 
     const choiceList = [...coreBooksList, selectedChoice];
     const cookieValue = JSON.stringify(choiceList);
-    Cookies.set('choice', cookieValue);
+    console.log(cookieDuration);
+    Cookies.set('choice', cookieValue, { expires: cookieDuration });
     onArmySaved("ChatApp");
   };
 

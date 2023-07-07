@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
-import Cookies from "js-cookie";
-import rules_pdfs_Data from "./store/rules_pdfs.json";
-import "./style/Settings.css";
 import { IoCloseSharp } from "react-icons/io5";
+import Cookies from "js-cookie";
+import rules_pdfs_Data from "../store/rules_pdfs.json";
+import env_data from "../store/env.json";
+import "../style/Settings.css";
+
 
 const Settings = ({ onSaveClicked }) => {
   const [pdfsChecked, setPdfsChecked] = useState([]);
+  const cookieDuration = env_data.cookieDuration;
 
   useEffect(() => {
     const savedChoice = Cookies.get("choice");
     if (savedChoice) {
       const choiceArray = JSON.parse(savedChoice);
-      console.log(choiceArray);
       setPdfsChecked(choiceArray);
     }
   }, []);
 
   const handleOptionToggle = (toggled_pdf_name) => {
-    console.log("truc");
     if (pdfsChecked.includes(toggled_pdf_name)) {
       const newPdfsChecked = pdfsChecked.filter(
         (pdf_name) => pdf_name !== toggled_pdf_name
@@ -35,7 +36,7 @@ const Settings = ({ onSaveClicked }) => {
 
   const handleSaveChoice = () => {
     const cookieValue = JSON.stringify(pdfsChecked);
-    Cookies.set("choice", cookieValue);
+    Cookies.set("choice", cookieValue, { expires: cookieDuration });
     onSaveClicked("ChatApp");
   };
 
@@ -55,9 +56,8 @@ const Settings = ({ onSaveClicked }) => {
           .map((item) => (
             <div
               key={item.pdf_name}
-              className={`pdf-name-wrapper ${
-                pdfsChecked.includes(item.pdf_name) ? "active" : ""
-              }`}
+              className={`pdf-name-wrapper ${pdfsChecked.includes(item.pdf_name) ? "active" : ""
+                }`}
               onClick={() => handleOptionToggle(item.pdf_name)}
             >
               <p className="pdf-name">{item.label}</p>
@@ -71,9 +71,8 @@ const Settings = ({ onSaveClicked }) => {
           .filter((item) => item.is_core)
           .map((item) => (
             <div
-              className={`pdf-name-wrapper ${
-                pdfsChecked.includes(item.pdf_name) ? "active" : ""
-              }`}
+              className={`pdf-name-wrapper ${pdfsChecked.includes(item.pdf_name) ? "active" : ""
+                }`}
               onClick={() => handleOptionToggle(item.pdf_name)}
               key={item.pdf_name}
             >

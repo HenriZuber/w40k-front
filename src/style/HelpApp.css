@@ -1,0 +1,48 @@
+.help-main {
+  --font-size-primary: 20px;
+  --background-settings-primary: #30313b;
+  --background-settings-message-human: #4e5161;
+  --background-settings-message-bot: #444654;
+  font-size: var(--font-size-primary);
+  background-color: var(--background-settings-primary);
+  overflow-y: scroll;
+  width: 90%;
+  max-width: 800px;
+}
+
+
+.pdf-name-wrapper {
+  text-align: center;
+  background-color: #444654;
+  border: solid 1px rgba(255, 255, 255, 0.5);
+  padding: 10px 10px;
+  margin: 5px 1px;
+  border-radius: 50px;
+  width: auto;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+
+#close-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  /* width: 50px;
+  height: 50px; */
+  background: none;
+  border: none;
+}
+
+#close-button svg {
+  fill: #d4d2d2;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+#close-button svg:hover {
+  fill: #ffffff;
+  transform: rotateZ(90deg);
+}

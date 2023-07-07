@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
-import "./style/App.css";
+import "../style/App.css";
 import ChoiceDropdown from "./ChoiceDropdown";
+import HelpApp from "./HelpApp";
 import ChatApp from "./ChatApp";
 import Settings from "./Settings";
 
@@ -27,17 +28,21 @@ function App() {
       <header className="App-header">
         <h3>Wahabot</h3>
       </header>
-      <body className="App-body">
+      <div className="App-body">
         {activeComponent === "ChoiceDropdown" && (
           <ChoiceDropdown onArmySaved={handleActiveComponent} />
         )}
         {activeComponent === "ChatApp" && (
-          <ChatApp onSettingsClicked={handleActiveComponent} />
+          <ChatApp onNavClicked={handleActiveComponent} />
         )}
         {activeComponent === "Settings" && (
           <Settings onSaveClicked={handleActiveComponent} />
         )}
-      </body>
+        {activeComponent === "HelpApp" && (
+          <HelpApp onBackClicked={handleActiveComponent} />
+        )}
+      </div>
+
     </>
   );
 }
