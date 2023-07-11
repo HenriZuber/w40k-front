@@ -3,11 +3,12 @@ import Cookies from "js-cookie";
 import "../style/App.css";
 import ChoiceDropdown from "./ChoiceDropdown";
 import HelpApp from "./HelpApp";
+import InfoApp from "./InfoApp";
 import ChatApp from "./ChatApp";
 import Settings from "./Settings";
 
 function App() {
-  const [activeComponent, setActiveComponent] = useState("ChoiceDropdown");
+  const [activeComponent, setActiveComponent] = useState("ChatApp");
 
   useEffect(() => {
     // Check if the choice is already saved in a cookie
@@ -16,6 +17,8 @@ function App() {
       const choiceArray = JSON.parse(savedChoice);
       console.log(choiceArray);
       setActiveComponent("ChatApp");
+    } else {
+      setActiveComponent("ChoiceDropdown");
     }
   }, []);
 
@@ -26,7 +29,7 @@ function App() {
   return (
     <>
       <header className="App-header">
-        <h3>Wahabot</h3>
+        <h3>Imperium Explorer</h3>
       </header>
       <div className="App-body">
         {activeComponent === "ChoiceDropdown" && (
@@ -40,6 +43,9 @@ function App() {
         )}
         {activeComponent === "HelpApp" && (
           <HelpApp onBackClicked={handleActiveComponent} />
+        )}
+        {activeComponent === "InfoApp" && (
+          <InfoApp onBackClicked={handleActiveComponent} />
         )}
       </div>
 

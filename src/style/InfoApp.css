@@ -1,0 +1,42 @@
+.info-main {
+  --font-size-primary: 20px;
+  --background-settings-primary: #30313b;
+  --background-settings-message-human: #4e5161;
+  --background-settings-message-bot: #444654;
+  font-size: var(--font-size-primary);
+  background-color: var(--background-settings-primary);
+  overflow-y: scroll;
+  width: 90%;
+  max-width: 800px;
+  flex: auto;
+  text-align: left;
+}
+
+.inline-hyperlink-wrapper:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #4e5161;
+}
+
+.inline-hyperlink-wrapper.active {
+  background-color: white;
+  border-color: white;
+  color: #4e5161;
+}
+
+
+.inline-hyperlink-wrapper {
+  text-align: center;
+  background-color: #444654;
+  border: solid 1px rgba(255, 255, 255, 0.5);
+  padding: 20px 30px 0px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  color: #ffffff;
+  user-select: none;
+  transition: all 0.1s ease-in-out;
+}
+
+.inline-hyperlink-wrapper svg {
+  height: 40px;
+  width: 40px;
+}

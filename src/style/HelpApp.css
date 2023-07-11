@@ -10,17 +10,55 @@
   max-width: 800px;
 }
 
+.help-points-wrapper {
+  width: 100%;
+}
 
-.pdf-name-wrapper {
+.help-point {
+  padding-bottom: 5px;
+  width: 100%;
+}
+
+
+.back-button-wrapper {
   text-align: center;
   background-color: #444654;
   border: solid 1px rgba(255, 255, 255, 0.5);
-  padding: 10px 10px;
-  margin: 5px 1px;
+  padding: 10px 20px;
   border-radius: 50px;
   width: auto;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
+  margin-right: auto;
+  margin-left: auto;
+  position: fixed;
+  bottom: 20px;
+}
+
+.back-button-title {
+  font-size: 20px;
+  line-height: 20px;
+  margin: 0;
+  color: #ffffff;
+  user-select: none;
+  transition: all 0.1s ease-in-out;
+}
+
+.back-button-wrapper:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.back-button-wrapper.active {
+  background-color: white;
+  border-color: white;
+}
+
+.back-button-wrapper:hover .back-button-title {
+  color: #4e5161;
+}
+
+.back-button-wrapper.active .back-button-title {
+  color: #4e5161;
 }
 
 

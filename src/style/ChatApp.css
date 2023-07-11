@@ -184,19 +184,44 @@
   fill: #ffffff;
 }
 
-@keyframes typing-animation {
+#info-button {
+  position: fixed;
+  top: 20px;
+  right: 70px;
+  background: none;
+  border: none;
+}
 
-  0%,
-  80%,
-  100% {
-    opacity: 0.4;
-    transform: scale(0.8);
-  }
+#info-button svg {
+  fill: #d4d2d2;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
 
-  40% {
-    opacity: 1;
-    transform: scale(1);
-  }
+#info-button svg:hover {
+  fill: #ffffff;
+}
+
+#cafe-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+}
+
+#cafe-button svg {
+  fill: #d4d2d2;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+#cafe-button svg:hover {
+  fill: #ffffff;
 }
 
 /* Responsive */

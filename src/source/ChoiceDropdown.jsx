@@ -40,7 +40,7 @@ const ChoiceDropdown = ({ onArmySaved }) => {
         </select>
         <button className="button" onClick={handleSaveChoice}>Save</button>
       </div>
-      <p>You'll be able to change later</p>
+      <p style={{ textAlign: "center" }}>You'll be able to change later in the <b>settings</b>.<br></br>Don't forget to check the <b>help</b> and <b>information</b> too !</p>
     </div >
   );
 };

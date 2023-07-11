@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Cookies from 'js-cookie';
-import { IoSend, IoSettingsSharp, IoHelpCircleSharp } from 'react-icons/io5';
+import { IoSend, IoSettingsSharp, IoHelpCircleSharp, IoInformationCircleSharp, IoCafeSharp } from 'react-icons/io5';
 import '../style/ChatApp.css';
+import envData from '../store/env.json';
 
 const ChatApp = ({ onNavClicked }) => {
   const [messages, setMessages] = useState([]);
@@ -34,6 +35,10 @@ const ChatApp = ({ onNavClicked }) => {
 
   const handleHelpClicked = () => {
     onNavClicked("HelpApp");
+  }
+
+  const handleInfoClicked = () => {
+    onNavClicked("InfoApp");
   }
 
   const handleSubmit = async (e) => {
@@ -90,6 +95,16 @@ const ChatApp = ({ onNavClicked }) => {
       <button id='help-button' type="submit" onClick={handleHelpClicked}>
         <IoHelpCircleSharp />
       </button>
+
+      <button id='info-button' type="submit" onClick={handleInfoClicked}>
+        <IoInformationCircleSharp />
+      </button>
+
+      <a href={envData.coffeeLink} target="_blank" rel="noopener noreferrer">
+        <button id='cafe-button'>
+          <IoCafeSharp />
+        </button>
+      </a>
 
       <div className="chat-window" ref={chatWindowRef}>
         {/* Render loading indicator while waiting for API response */}
