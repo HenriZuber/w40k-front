@@ -1,30 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import rules_pdfs_Data from '../store/rules_pdfs.json';
+import en_rules_pdfs_Data from '../store/en_rules_pdfs.json';
+import fr_rules_pdfs_Data from '../store/fr_rules_pdfs.json';
 import env_data from "../store/env.json";
 import '../style/ChoiceDropdown.css';
 
 const ChoiceDropdown = ({ onArmySaved }) => {
   const [selectedChoice, setSelectedChoice] = useState('');
-  const cookieDuration = env_data.cookieDuration;
+  const [curr_rules_pdfs_Data, setCurr_rules_pdfs_Data] = useState([]);
 
   const handleChoiceSelect = (event) => {
     setSelectedChoice(event.target.value);
   };
 
+  useEffect(() => {
+    const savedlang = Cookies.get('lang');
+    console.log(savedlang);
+    if (savedlang) {
+      if (savedlang === 'en') {
+        setCurr_rules_pdfs_Data(en_rules_pdfs_Data);
+      } else if (savedlang === 'fr') {
+        setCurr_rules_pdfs_Data(fr_rules_pdfs_Data);
+      }
+    } else {
+      Cookies.set('lang', 'en', { expires: env_data.cookieDuration });
+      setCurr_rules_pdfs_Data(en_rules_pdfs_Data);
+    }
+
+  }, []);
+
   const handleSaveChoice = () => {
-    const coreBooksList = rules_pdfs_Data
-      .filter((army) => army.is_core)
-      .map((army) => army.pdf_name);
+    const coreBooksList = curr_rules_pdfs_Data
+      .filter((army) => army.category === "key-downloads")
+      .map((army) => army.file_name);
 
     const choiceList = [...coreBooksList, selectedChoice];
     const cookieValue = JSON.stringify(choiceList);
-    console.log(cookieDuration);
-    Cookies.set('choice', cookieValue, { expires: cookieDuration });
+    if (Cookies.get("lang") === "fr") {
+      var cookieName = "fr_choice";
+      var otherCookieName = "en_choice";
+      var otherCookieValue = en_rules_pdfs_Data.filter((army) => army.category === "key-downloads").map((army) => army.file_name);
+    } else {
+      var cookieName = "en_choice";
+      var otherCookieName = "fr_choice";
+      var otherCookieValue = fr_rules_pdfs_Data.filter((army) => army.category === "key-downloads").map((army) => army.file_name);
+    }
+    Cookies.set(cookieName, cookieValue, { expires: env_data.cookieDuration });
+    Cookies.set(otherCookieName, JSON.stringify(otherCookieValue), { expires: env_data.cookieDuration });
     onArmySaved("ChatApp");
   };
 
-  const filteredOptions = rules_pdfs_Data.filter((army) => army.is_core === false);
+  const filteredOptions = curr_rules_pdfs_Data.filter((army) => army.category === "indexes-faqs-and-errata");
 
   return (
     <div className="choice-dropdown-main">
@@ -33,8 +59,8 @@ const ChoiceDropdown = ({ onArmySaved }) => {
         <select className="select-dropdown" value={selectedChoice} onChange={handleChoiceSelect}>
           <option value="">None</option>
           {filteredOptions.map((army, index) => (
-            <option key={index} value={army.pdf_name}>
-              {army.label}
+            <option key={index} value={army.file_name}>
+              {army.name}
             </option>
           ))}
         </select>

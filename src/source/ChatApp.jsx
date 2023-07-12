@@ -52,6 +52,7 @@ const ChatApp = ({ onNavClicked }) => {
     try {
       setIsLoading(true);
       const savedChoice = Cookies.get('choice');
+      const savedLang = Cookies.get('lang');
       const choiceArray = JSON.parse(savedChoice);
       const response = await fetch('https://1xwd1tvxjg.execute-api.eu-west-3.amazonaws.com/default/w40k-back-func', {
         method: 'POST',
@@ -61,6 +62,7 @@ const ChatApp = ({ onNavClicked }) => {
         body: JSON.stringify({
           query: inputValue,
           sources_input: choiceArray,
+          country_code: savedLang,
         }),
       });
 

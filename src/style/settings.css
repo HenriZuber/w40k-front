@@ -43,6 +43,7 @@
   user-select: none;
   transition: all 0.1s ease-in-out;
 }
+
 .pdf-name-wrapper:hover {
   background-color: rgba(255, 255, 255, 0.8);
 }
@@ -51,9 +52,11 @@
   background-color: white;
   border-color: white;
 }
+
 .pdf-name-wrapper:hover .pdf-name {
   color: #4e5161;
 }
+
 .pdf-name-wrapper.active .pdf-name {
   color: #4e5161;
 }

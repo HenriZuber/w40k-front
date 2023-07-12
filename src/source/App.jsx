@@ -6,21 +6,40 @@ import HelpApp from "./HelpApp";
 import InfoApp from "./InfoApp";
 import ChatApp from "./ChatApp";
 import Settings from "./Settings";
+import env_data from "../store/env.json";
 
 function App() {
   const [activeComponent, setActiveComponent] = useState("ChatApp");
 
   useEffect(() => {
-    // Check if the choice is already saved in a cookie
-    const savedChoice = Cookies.get("choice");
+    const initChoiceCookie = getCurrActiveChoiceCookie();
+    const savedChoice = initChoiceCookie;
     if (savedChoice) {
-      const choiceArray = JSON.parse(savedChoice);
-      console.log(choiceArray);
       setActiveComponent("ChatApp");
     } else {
       setActiveComponent("ChoiceDropdown");
     }
+
   }, []);
+
+
+
+  const getCurrActiveChoiceCookie = () => {
+    const savedlang = Cookies.get('lang');
+    if (savedlang) {
+      if (savedlang === 'en') {
+        const currActiveChoiceCookie = Cookies.get("en_choice");
+        return currActiveChoiceCookie;
+      } else if (savedlang === 'fr') {
+        const currActiveChoiceCookie = Cookies.get("fr_choice");
+        return currActiveChoiceCookie;
+      }
+    } else {
+      Cookies.set('lang', 'en', { expires: env_data.cookieDuration });
+      const currActiveChoiceCookie = Cookies.get("en_choice");
+      return currActiveChoiceCookie;
+    }
+  }
 
   const handleActiveComponent = (componentName) => {
     setActiveComponent(componentName);
