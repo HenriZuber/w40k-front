@@ -71,6 +71,11 @@
         "pdf_file_url": "https://www.warhammer-community.com/wp-content/uploads/2023/06/BxD5f4V4iKPRNZEn.pdf",
         "category": "indexes-faqs-and-errata"
     },
+     {
+        "name": "Hello Kitty",
+        "file_name": "Hello_Kitty",
+        "category": "indexes-faqs-and-errata"
+    },
     {
         "name": "Agents Of The Imperium",
         "file_name": "Agents_Of_The_Imperium.pdf",

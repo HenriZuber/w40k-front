@@ -4,7 +4,6 @@
   --background-settings-message-human: #4e5161;
   --background-settings-message-bot: #444654;
   font-size: var(--font-size-primary);
-  background-color: var(--background-settings-primary);
   overflow-y: scroll;
   width: 100%;
   max-width: 800px;
@@ -13,6 +12,7 @@
 .category-name {
   padding: 0 20px;
   margin: 10px auto;
+  color: var(--secondary-font-color);
 }
 
 .column-parent {
@@ -25,7 +25,7 @@
 
 .pdf-name-wrapper {
   text-align: center;
-  background-color: #444654;
+  background-color: var(--contrast-color);
   border: solid 1px rgba(255, 255, 255, 0.5);
   padding: 10px 10px;
   margin: 5px 1px;
@@ -39,7 +39,7 @@
   font-size: 12px;
   line-height: 12px;
   margin: 0;
-  color: #ffffff;
+  color: var(--font-color);
   user-select: none;
   transition: all 0.1s ease-in-out;
 }
@@ -49,26 +49,27 @@
 }
 
 .pdf-name-wrapper.active {
-  background-color: white;
-  border-color: white;
+  background-color: var(--font-color);
+  border-color: var(--contrast-color);
 }
 
 .pdf-name-wrapper:hover .pdf-name {
-  color: #4e5161;
+  color: var(--contrast-color);
 }
 
 .pdf-name-wrapper.active .pdf-name {
-  color: #4e5161;
+  color: var(--contrast-color);
 }
 
 .save-button {
   position: fixed;
+
   top: 15px;
   padding: 5px 10px;
   right: 20px;
-  background-color: #ffffff;
-  color: #5e6484;
-  border: 1px solid #ffffff;
+  background-color: var(--font-color);
+  color: var(--contrast-color);
+  border: 1px solid var(--background);
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
@@ -86,7 +87,7 @@
 }
 
 #close-button svg {
-  fill: #d4d2d2;
+  fill: var(--font-color);
   height: 20px;
   width: 20px;
   cursor: pointer;

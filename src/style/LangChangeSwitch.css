@@ -1,6 +1,6 @@
 .toggle-switch {
-  --background-french: #4e5161;
-  --background-english: #4e5161;
+  --background-french: var(--contrast-color);
+  --background-english: var(--contrast-color);
   margin: 0 auto 0 auto;
   position: relative;
   width: 70px;
@@ -41,7 +41,7 @@
   padding: 0;
   line-height: 33px;
   font-size: 14px;
-  color: #fff;
+  color: var(--font-color);
   font-weight: bold;
   box-sizing: border-box;
 }
@@ -50,14 +50,14 @@
   content: "FR";
   padding-left: 10px;
   background-color: var(--background-french);
-  color: #fff;
+  color: var(--font-color);
 }
 
 .toggle-switch-inner:after {
   content: "EN";
   padding-right: 10px;
   background-color: var(--background-english);
-  color: #fff;
+  color: var(--font-color);
   text-align: right;
 }
 
@@ -74,10 +74,10 @@
   transition: all 0.3s;
 }
 
-.toggle-switch-checkbox:checked+.toggle-switch-label .toggle-switch-inner {
+.toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-inner {
   margin-left: 0;
 }
 
-.toggle-switch-checkbox:checked+.toggle-switch-label .toggle-switch-switch {
+.toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-switch {
   right: 0;
 }

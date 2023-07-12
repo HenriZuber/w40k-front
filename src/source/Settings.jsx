@@ -7,16 +7,15 @@ import env_data from "../store/env.json";
 import "../style/Settings.css";
 import "../style/LangChangeSwitch.css";
 
-
-const Settings = ({ onSaveClicked }) => {
+function Settings(props) {
   const [pdfsChecked, setPdfsChecked] = useState([]);
   const [curr_rules_pdfs_Data, setCurr_rules_pdfs_Data] = useState([]);
-  const [language, setLanguage] = useState(Cookies.get('lang') || 'en');
+  const [language, setLanguage] = useState(Cookies.get("lang") || "en");
 
   const handleLanguageChange = () => {
-    const newLanguage = language === 'en' ? 'fr' : 'en';
+    const newLanguage = language === "en" ? "fr" : "en";
     setLanguage(newLanguage);
-    Cookies.set('lang', newLanguage);
+    Cookies.set("lang", newLanguage);
   };
 
   useEffect(() => {
@@ -25,36 +24,36 @@ const Settings = ({ onSaveClicked }) => {
       const choiceArray = JSON.parse(initChoiceCookie);
       setPdfsChecked(choiceArray);
     }
-    const savedlang = Cookies.get('lang');
+    const savedlang = Cookies.get("lang");
     console.log(savedlang);
     if (savedlang) {
-      if (savedlang === 'en') {
+      if (savedlang === "en") {
         setCurr_rules_pdfs_Data(en_rules_pdfs_Data);
-      } else if (savedlang === 'fr') {
+      } else if (savedlang === "fr") {
         setCurr_rules_pdfs_Data(fr_rules_pdfs_Data);
       }
     } else {
-      Cookies.set('lang', 'en', { expires: env_data.cookieDuration });
+      Cookies.set("lang", "en", { expires: env_data.cookieDuration });
       setCurr_rules_pdfs_Data(en_rules_pdfs_Data);
     }
   }, [language]);
 
   const getCurrActiveChoiceCookie = () => {
-    const savedlang = Cookies.get('lang');
+    const savedlang = Cookies.get("lang");
     if (savedlang) {
-      if (savedlang === 'en') {
+      if (savedlang === "en") {
         const currActiveChoiceCookie = Cookies.get("en_choice");
         return currActiveChoiceCookie;
-      } else if (savedlang === 'fr') {
+      } else if (savedlang === "fr") {
         const currActiveChoiceCookie = Cookies.get("fr_choice");
         return currActiveChoiceCookie;
       }
     } else {
-      Cookies.set('lang', 'en', { expires: env_data.cookieDuration });
+      Cookies.set("lang", "en", { expires: env_data.cookieDuration });
       const currActiveChoiceCookie = Cookies.get("en_choice");
       return currActiveChoiceCookie;
     }
-  }
+  };
 
   const handleOptionToggle = (toggled_pdf_name) => {
     if (pdfsChecked.includes(toggled_pdf_name)) {
@@ -69,7 +68,7 @@ const Settings = ({ onSaveClicked }) => {
   };
 
   const handleCancelChoice = () => {
-    onSaveClicked("ChatApp");
+    props.onSaveClicked("ChatApp");
   };
 
   const handleSaveChoice = () => {
@@ -79,12 +78,16 @@ const Settings = ({ onSaveClicked }) => {
       cookieName = "fr_choice";
     }
     Cookies.set(cookieName, cookieValue, { expires: env_data.cookieDuration });
-    onSaveClicked("ChatApp");
+    props.onSaveClicked("ChatApp");
   };
 
   useEffect(() => {
     console.log(pdfsChecked);
   }, [pdfsChecked]);
+
+  const toggleTheme = () => {
+    props.triggerEffect();
+  };
 
   return (
     <div className="settings-main">
@@ -98,7 +101,7 @@ const Settings = ({ onSaveClicked }) => {
           type="checkbox"
           id="language-toggle"
           className="toggle-switch-checkbox"
-          checked={language === 'fr'}
+          checked={language === "fr"}
           onChange={handleLanguageChange}
         />
         <label className="toggle-switch-label" htmlFor="language-toggle">
@@ -114,9 +117,14 @@ const Settings = ({ onSaveClicked }) => {
           .map((item) => (
             <div
               key={item.file_name}
-              className={`pdf-name-wrapper ${pdfsChecked.includes(item.file_name) ? "active" : ""
-                }`}
-              onClick={() => handleOptionToggle(item.file_name)}
+              className={`pdf-name-wrapper ${
+                pdfsChecked.includes(item.file_name) ? "active" : ""
+              }`}
+              onClick={() =>
+                item.file_name !== "Hello_Kitty"
+                  ? handleOptionToggle(item.file_name)
+                  : toggleTheme()
+              }
             >
               <p className="pdf-name">{item.name}</p>
             </div>
@@ -129,8 +137,9 @@ const Settings = ({ onSaveClicked }) => {
           .filter((item) => item.category === "key-downloads")
           .map((item) => (
             <div
-              className={`pdf-name-wrapper ${pdfsChecked.includes(item.file_name) ? "active" : ""
-                }`}
+              className={`pdf-name-wrapper ${
+                pdfsChecked.includes(item.file_name) ? "active" : ""
+              }`}
               onClick={() => handleOptionToggle(item.file_name)}
               key={item.file_name}
             >
@@ -145,6 +154,6 @@ const Settings = ({ onSaveClicked }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Settings;

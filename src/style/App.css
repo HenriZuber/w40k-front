@@ -1,3 +1,25 @@
+:root body.light {
+  --background: #ffc8ef;
+  --background-lighter: #ffecf8;
+  --contrast-color: #f59c27;
+  --font-color: white;
+  --secondary-font-color: #f59c27;
+  --background-color-message-human: #ffbc64;
+  --background-color-message-bot: #f59c27;
+  --placeholder-and-buttons: var(--background-lighter);
+}
+
+:root body.dark {
+  --background: #30313b;
+  --background-lighter: #444654;
+  --contrast-color: #444654;
+  --font-color: white;
+  --secondary-font-color: #eee;
+  --background-color-message-human: #5e6484;
+  --background-color-message-bot: #444654;
+  --placeholder-and-buttons: #d4d2d2;
+}
+
 #root {
   display: flex;
   flex-direction: column;
@@ -6,7 +28,7 @@
 }
 
 body {
-  background-color: #30313b;
+  background-color: var(--background);
 }
 
 .App {
@@ -14,9 +36,9 @@ body {
 }
 
 .App-header {
-  color: white;
+  color: var(--secondary-font-color);
   text-align: center;
-  background-color: #444654;
+  background-color: var(--background-lighter);
   border-radius: 0 0 20px 20px;
   position: fixed;
   top: 0;

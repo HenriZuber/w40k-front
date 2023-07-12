@@ -1,12 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Cookies from 'js-cookie';
-import { IoSend, IoSettingsSharp, IoHelpCircleSharp, IoInformationCircleSharp, IoCafeSharp } from 'react-icons/io5';
-import '../style/ChatApp.css';
-import env_data from '../store/env.json';
+import React, { useState, useEffect, useRef } from "react";
+import Cookies from "js-cookie";
+import {
+  IoSend,
+  IoSettingsSharp,
+  IoHelpCircleSharp,
+  IoInformationCircleSharp,
+  IoCafeSharp,
+} from "react-icons/io5";
+import "../style/ChatApp.css";
+import env_data from "../store/env.json";
 
 const ChatApp = ({ onNavClicked }) => {
   const [messages, setMessages] = useState([]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const chatWindowRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,26 +26,26 @@ const ChatApp = ({ onNavClicked }) => {
   };
 
   const getCurrActiveChoiceCookie = () => {
-    const savedlang = Cookies.get('lang');
+    const savedlang = Cookies.get("lang");
     if (savedlang) {
-      if (savedlang === 'en') {
+      if (savedlang === "en") {
         const currActiveChoiceCookie = Cookies.get("en_choice");
         return currActiveChoiceCookie;
-      } else if (savedlang === 'fr') {
+      } else if (savedlang === "fr") {
         const currActiveChoiceCookie = Cookies.get("fr_choice");
         return currActiveChoiceCookie;
       }
     } else {
-      Cookies.set('lang', 'en', { expires: env_data.cookieDuration });
+      Cookies.set("lang", "en", { expires: env_data.cookieDuration });
       const currActiveChoiceCookie = Cookies.get("en_choice");
       return currActiveChoiceCookie;
     }
-  }
+  };
 
   useEffect(() => {
     const delay = 200; // Delay in milliseconds
     const timeoutId = setTimeout(() => {
-      addMessage('Hello ! How can I assist you ?')
+      addMessage("Hello ! How can I assist you ?");
     }, delay);
     return () => {
       clearTimeout(timeoutId);
@@ -48,32 +54,32 @@ const ChatApp = ({ onNavClicked }) => {
 
   const handleSettingsClicked = () => {
     onNavClicked("Settings");
-  }
+  };
 
   const handleHelpClicked = () => {
     onNavClicked("HelpApp");
-  }
+  };
 
   const handleInfoClicked = () => {
     onNavClicked("InfoApp");
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (inputValue.trim() === '') return;
+    if (inputValue.trim() === "") return;
 
     addMessage(inputValue, true);
-    setInputValue('');
+    setInputValue("");
 
     try {
       setIsLoading(true);
-      const savedLang = Cookies.get('lang');
+      const savedLang = Cookies.get("lang");
       const choiceArray = JSON.parse(getCurrActiveChoiceCookie());
       const response = await fetch(env_data.apiUrl, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           query: inputValue,
@@ -83,20 +89,19 @@ const ChatApp = ({ onNavClicked }) => {
       });
 
       if (!response.ok) {
-        throw new Error('Chatbot API request failed.');
+        throw new Error("Chatbot API request failed.");
       }
 
       const data = await response.json();
-      const parsed_body = JSON.parse(data.body)
-      const botResponse = parsed_body.message // JSON key
+      const parsed_body = JSON.parse(data.body);
+      const botResponse = parsed_body.message; // JSON key
       setIsLoading(false);
       addMessage(botResponse);
     } catch (error) {
       setIsLoading(false);
-      addMessage('Oops! Something went wrong:\n' + error.message);
+      addMessage("Oops! Something went wrong:\n" + error.message);
     }
   };
-
 
   useEffect(() => {
     // Scroll to the bottom of the chat window when a new message is added
@@ -105,20 +110,24 @@ const ChatApp = ({ onNavClicked }) => {
 
   return (
     <div className="chat-app">
-      <button id='settings-button' type="submit" onClick={handleSettingsClicked}>
+      <button
+        id="settings-button"
+        type="submit"
+        onClick={handleSettingsClicked}
+      >
         <IoSettingsSharp />
       </button>
 
-      <button id='help-button' type="submit" onClick={handleHelpClicked}>
+      <button id="help-button" type="submit" onClick={handleHelpClicked}>
         <IoHelpCircleSharp />
       </button>
 
-      <button id='info-button' type="submit" onClick={handleInfoClicked}>
+      <button id="info-button" type="submit" onClick={handleInfoClicked}>
         <IoInformationCircleSharp />
       </button>
 
       <a href={env_data.coffeeLink} target="_blank" rel="noopener noreferrer">
-        <button id='cafe-button'>
+        <button id="cafe-button">
           <IoCafeSharp />
         </button>
       </a>
@@ -137,12 +146,13 @@ const ChatApp = ({ onNavClicked }) => {
         {messages.map((message) => (
           <div
             key={message.id}
-            className={`message ${message.isUser ? 'user-message' : 'bot-message'}`}
+            className={`message ${
+              message.isUser ? "user-message" : "bot-message"
+            }`}
           >
             {message.text}
           </div>
         ))}
-
       </div>
       <div className="chat-input-wrapper">
         <form className="chat-input" onSubmit={handleSubmit}>
@@ -156,7 +166,6 @@ const ChatApp = ({ onNavClicked }) => {
             <IoSend />
           </button>
         </form>
-
       </div>
     </div>
   );

@@ -11,6 +11,17 @@ import env_data from "../store/env.json";
 function App() {
   const [activeComponent, setActiveComponent] = useState("ChatApp");
 
+  const [theme, setTheme] = useState(true);
+
+  useEffect(() => {
+    console.log("useEffect");
+    document.body.className = theme ? "dark" : "light";
+  }, [theme]);
+
+  const triggerEffect = () => {
+    setTheme(!theme);
+  };
+
   useEffect(() => {
     const initChoiceCookie = getCurrActiveChoiceCookie();
     const savedChoice = initChoiceCookie;
@@ -19,27 +30,24 @@ function App() {
     } else {
       setActiveComponent("ChoiceDropdown");
     }
-
   }, []);
 
-
-
   const getCurrActiveChoiceCookie = () => {
-    const savedlang = Cookies.get('lang');
+    const savedlang = Cookies.get("lang");
     if (savedlang) {
-      if (savedlang === 'en') {
+      if (savedlang === "en") {
         const currActiveChoiceCookie = Cookies.get("en_choice");
         return currActiveChoiceCookie;
-      } else if (savedlang === 'fr') {
+      } else if (savedlang === "fr") {
         const currActiveChoiceCookie = Cookies.get("fr_choice");
         return currActiveChoiceCookie;
       }
     } else {
-      Cookies.set('lang', 'en', { expires: env_data.cookieDuration });
+      Cookies.set("lang", "en", { expires: env_data.cookieDuration });
       const currActiveChoiceCookie = Cookies.get("en_choice");
       return currActiveChoiceCookie;
     }
-  }
+  };
 
   const handleActiveComponent = (componentName) => {
     setActiveComponent(componentName);
@@ -58,7 +66,10 @@ function App() {
           <ChatApp onNavClicked={handleActiveComponent} />
         )}
         {activeComponent === "Settings" && (
-          <Settings onSaveClicked={handleActiveComponent} />
+          <Settings
+            onSaveClicked={handleActiveComponent}
+            triggerEffect={triggerEffect}
+          />
         )}
         {activeComponent === "HelpApp" && (
           <HelpApp onBackClicked={handleActiveComponent} />
@@ -67,7 +78,6 @@ function App() {
           <InfoApp onBackClicked={handleActiveComponent} />
         )}
       </div>
-
     </>
   );
 }
