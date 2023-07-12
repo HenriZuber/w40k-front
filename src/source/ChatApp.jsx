@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Cookies from 'js-cookie';
 import { IoSend, IoSettingsSharp, IoHelpCircleSharp, IoInformationCircleSharp, IoCafeSharp } from 'react-icons/io5';
 import '../style/ChatApp.css';
-import envData from '../store/env.json';
+import env_data from '../store/env.json';
 
 const ChatApp = ({ onNavClicked }) => {
   const [messages, setMessages] = useState([]);
@@ -18,6 +18,23 @@ const ChatApp = ({ onNavClicked }) => {
     };
     setMessages((prevMessages) => [newMessage, ...prevMessages]);
   };
+
+  const getCurrActiveChoiceCookie = () => {
+    const savedlang = Cookies.get('lang');
+    if (savedlang) {
+      if (savedlang === 'en') {
+        const currActiveChoiceCookie = Cookies.get("en_choice");
+        return currActiveChoiceCookie;
+      } else if (savedlang === 'fr') {
+        const currActiveChoiceCookie = Cookies.get("fr_choice");
+        return currActiveChoiceCookie;
+      }
+    } else {
+      Cookies.set('lang', 'en', { expires: env_data.cookieDuration });
+      const currActiveChoiceCookie = Cookies.get("en_choice");
+      return currActiveChoiceCookie;
+    }
+  }
 
   useEffect(() => {
     const delay = 200; // Delay in milliseconds
@@ -51,10 +68,9 @@ const ChatApp = ({ onNavClicked }) => {
 
     try {
       setIsLoading(true);
-      const savedChoice = Cookies.get('choice');
       const savedLang = Cookies.get('lang');
-      const choiceArray = JSON.parse(savedChoice);
-      const response = await fetch('https://1xwd1tvxjg.execute-api.eu-west-3.amazonaws.com/default/w40k-back-func', {
+      const choiceArray = JSON.parse(getCurrActiveChoiceCookie());
+      const response = await fetch(env_data.apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -77,8 +93,7 @@ const ChatApp = ({ onNavClicked }) => {
       addMessage(botResponse);
     } catch (error) {
       setIsLoading(false);
-      addMessage('Oops! Something went wrong.');
-      addMessage(error.message);
+      addMessage('Oops! Something went wrong:\n' + error.message);
     }
   };
 
@@ -102,7 +117,7 @@ const ChatApp = ({ onNavClicked }) => {
         <IoInformationCircleSharp />
       </button>
 
-      <a href={envData.coffeeLink} target="_blank" rel="noopener noreferrer">
+      <a href={env_data.coffeeLink} target="_blank" rel="noopener noreferrer">
         <button id='cafe-button'>
           <IoCafeSharp />
         </button>
