@@ -1,0 +1,18 @@
+{
+  "dropdown-title": {
+    "fr": "Choisissez votre armée",
+    "en": "Choose your army"
+  },
+  "none-option": {
+    "fr": "Aucune",
+    "en": "None"
+  },
+  "save-button": {
+    "fr": "Sauvegarder",
+    "en": "Save"
+  },
+  "bottom-text": {
+    "fr": "Vous pourrez changer plus tard dans les <b>options</b>.<br></br>N'oubliez pas d'aller voir l'<b>aide</b> et les <b>informations</b> aussi.",
+    "en": "You'll be able to change later in the <b>settings</b>.<br></br>Don't forget to check the <b>help</b> and <b>information</b> too."
+  }
+}

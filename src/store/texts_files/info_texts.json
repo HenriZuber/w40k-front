@@ -1,0 +1,34 @@
+{
+  "info-text": {
+    "fr": "Informations",
+    "en": "Info"
+  },
+  "costs-text": {
+    "fr": "Coûts",
+    "en": "Costs"
+  },
+  "issues-text": {
+    "fr": "Problèmes",
+    "en": "Issues"
+  },
+  "back-text": {
+    "fr": "Retour",
+    "en": "Back"
+  },
+  "costs-1-text": {
+    "fr": "En moyenne, une conversation de quelques messages coûte 0.05€.",
+    "en": "On average, a conversation of a couple of messages costs 0.05€."
+  },
+  "costs-2-text": {
+    "fr": "Je m'occupe de ces coûts sans soucis et j'ai mis en place une limite pour éviter de m'en préoccuper.",
+    "en": "I gladly cover the costs and have a limit setup for the costs not to worry about it."
+  },
+  "costs-3-text": {
+    "fr": "Cependant, si vous voulez m'aider à couvrir ces coûts, vous pouvez m'acheter un café ici:",
+    "en": "However, if you'd like to buy me a coffee and help with those, you can do it here:"
+  },
+  "issues-1-text": {
+    "fr": "Si vous voulez signaler un problème ou suggérer des features, vous pouvez le faire ici:",
+    "en": "If you want to report issues or have specific suggestions for features, you can do it here:"
+  }
+}

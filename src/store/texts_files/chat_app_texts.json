@@ -1,0 +1,14 @@
+{
+  "greeting-message": {
+    "fr": "Bonjour ! Comment puis-je vous aider ?",
+    "en": "Hello ! How can I assist you ?"
+  },
+  "error-message": {
+    "fr": "Oops! Il y a eu un problème:\n",
+    "en": "Oops! Something went wrong:\n"
+  },
+  "placeholder-typing-message": {
+    "fr": "Tapez votre message...",
+    "en": "Type your message..."
+  }
+}

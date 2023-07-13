@@ -7,6 +7,7 @@ import InfoApp from "./InfoApp";
 import ChatApp from "./ChatApp";
 import Settings from "./Settings";
 import env_data from "../store/env.json";
+import app_text_data from "../store/texts_files/app_texts.json"
 
 function App() {
   const [activeComponent, setActiveComponent] = useState("ChatApp");

@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import en_rules_pdfs_Data from "../store/en_rules_pdfs.json";
 import fr_rules_pdfs_Data from "../store/fr_rules_pdfs.json";
 import env_data from "../store/env.json";
+import choice_dd_text_data from "../store/texts_files/choice_dropdown_texts.json"
 import "../style/ChoiceDropdown.css";
 
 const ChoiceDropdown = ({ onArmySaved }) => {
@@ -61,14 +62,14 @@ const ChoiceDropdown = ({ onArmySaved }) => {
 
   return (
     <div className="choice-dropdown-main">
-      <h1>Choose your army</h1>
+      <h1>{choice_dd_text_data["dropdown-title"][Cookies.get("lang")]}</h1>
       <div>
         <select
           className="select-dropdown"
           value={selectedChoice}
           onChange={handleChoiceSelect}
         >
-          <option value="">None</option>
+          <option value="">{choice_dd_text_data["none-option"][Cookies.get("lang")]}</option>
           {filteredOptions.map(function (army, index) {
             if (army.file_name === "Hello_Kitty") {
               return null;
@@ -81,15 +82,16 @@ const ChoiceDropdown = ({ onArmySaved }) => {
           })}
         </select>
         <button className="button" onClick={handleSaveChoice}>
-          Save
+          {choice_dd_text_data["save-button"][Cookies.get("lang")]}
         </button>
       </div>
-      <p style={{ textAlign: "center" }}>
-        You'll be able to change later in the <b>settings</b>.<br></br>Don't
-        forget to check the <b>help</b> and <b>information</b> too !
+      <p style={{ textAlign: "center" }} dangerouslySetInnerHTML={{ __html: choice_dd_text_data["bottom-text"][Cookies.get("lang")] }}>
       </p>
     </div>
   );
 };
 
 export default ChoiceDropdown;
+
+        // You'll be able to change later in the <b>settings</b>.<br></br>Don't
+        // forget to check the <b>help</b> and <b>information</b> too

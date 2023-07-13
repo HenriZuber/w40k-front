@@ -9,6 +9,7 @@ import {
 } from "react-icons/io5";
 import "../style/ChatApp.css";
 import env_data from "../store/env.json";
+import chat_app_text_data from "../store/texts_files/chat_app_texts.json"
 
 const ChatApp = ({ onNavClicked }) => {
   const [messages, setMessages] = useState([]);
@@ -45,8 +46,9 @@ const ChatApp = ({ onNavClicked }) => {
   useEffect(() => {
     const delay = 200; // Delay in milliseconds
     const timeoutId = setTimeout(() => {
-      addMessage("Hello ! How can I assist you ?");
+      addMessage(chat_app_text_data["greeting-message"][Cookies.get("lang")]);
     }, delay);
+
     return () => {
       clearTimeout(timeoutId);
     };
@@ -99,7 +101,7 @@ const ChatApp = ({ onNavClicked }) => {
       addMessage(botResponse);
     } catch (error) {
       setIsLoading(false);
-      addMessage("Oops! Something went wrong:\n" + error.message);
+      addMessage(chat_app_text_data["error-message"][Cookies.get("lang")] + error.message);
     }
   };
 
@@ -146,9 +148,8 @@ const ChatApp = ({ onNavClicked }) => {
         {messages.map((message) => (
           <div
             key={message.id}
-            className={`message ${
-              message.isUser ? "user-message" : "bot-message"
-            }`}
+            className={`message ${message.isUser ? "user-message" : "bot-message"
+              }`}
           >
             {message.text}
           </div>
@@ -160,7 +161,7 @@ const ChatApp = ({ onNavClicked }) => {
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Type your message..."
+            placeholder={chat_app_text_data["placeholder-typing-message"][Cookies.get("lang")]}
           />
           <button type="submit">
             <IoSend />

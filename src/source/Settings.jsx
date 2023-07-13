@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import en_rules_pdfs_Data from "../store/en_rules_pdfs.json";
 import fr_rules_pdfs_Data from "../store/fr_rules_pdfs.json";
 import env_data from "../store/env.json";
+import settings_text_data from "../store/texts_files/settings_texts.json"
 import "../style/Settings.css";
 import "../style/LangChangeSwitch.css";
 
@@ -95,7 +96,7 @@ function Settings(props) {
         <IoCloseSharp />
       </button>
 
-      <h2 className="category-name">Language</h2>
+      <h2 className="category-name">{settings_text_data["langue-text"][Cookies.get("lang")]}</h2>
       <div className="toggle-switch">
         <input
           type="checkbox"
@@ -110,16 +111,15 @@ function Settings(props) {
         </label>
       </div>
 
-      <h2 className="category-name">Codex</h2>
+      <h2 className="category-name">{settings_text_data["codex-text"][Cookies.get("lang")]}</h2>
       <div className="column-parent">
         {curr_rules_pdfs_Data
           .filter((item) => !(item.category === "key-downloads"))
           .map((item) => (
             <div
               key={item.file_name}
-              className={`pdf-name-wrapper ${
-                pdfsChecked.includes(item.file_name) ? "active" : ""
-              }`}
+              className={`pdf-name-wrapper ${pdfsChecked.includes(item.file_name) ? "active" : ""
+                }`}
               onClick={() =>
                 item.file_name !== "Hello_Kitty"
                   ? handleOptionToggle(item.file_name)
@@ -131,15 +131,14 @@ function Settings(props) {
           ))}
       </div>
 
-      <h2 className="category-name">Main Rules</h2>
+      <h2 className="category-name">{settings_text_data["main-rules-text"][Cookies.get("lang")]}</h2>
       <div className="column-parent">
         {curr_rules_pdfs_Data
           .filter((item) => item.category === "key-downloads")
           .map((item) => (
             <div
-              className={`pdf-name-wrapper ${
-                pdfsChecked.includes(item.file_name) ? "active" : ""
-              }`}
+              className={`pdf-name-wrapper ${pdfsChecked.includes(item.file_name) ? "active" : ""
+                }`}
               onClick={() => handleOptionToggle(item.file_name)}
               key={item.file_name}
             >
@@ -149,7 +148,7 @@ function Settings(props) {
       </div>
       <div className="save-button-wrapper">
         <button className="save-button" onClick={handleSaveChoice}>
-          Save
+          {settings_text_data["save-text"][Cookies.get("lang")]}
         </button>
       </div>
     </div>

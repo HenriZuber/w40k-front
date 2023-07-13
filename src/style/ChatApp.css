@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  overflow: hidden;
   width: 100%;
   font-size: var(--font-size-primary);
   background-color: var(--background-color-primary);
@@ -148,6 +147,7 @@
 }
 
 @keyframes typing-animation {
+
   0%,
   80%,
   100% {

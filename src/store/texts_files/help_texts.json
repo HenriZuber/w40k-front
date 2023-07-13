@@ -1,0 +1,26 @@
+{
+  "help-text": {
+    "fr": "Aide",
+    "en": "Help"
+  },
+  "back-text": {
+    "fr": "Retour",
+    "en": "Back"
+  },
+  "codexes-opp-text": {
+    "fr": "Vous pouvez ajouter autant de codex que vous voulez dans la partie Options. N'hésitez pas à ajouter le codex de votre adversaire pour éviter les petits <em>gotchas</em>.",
+    "en": "You can add any number of codexes to choose from in the Settings tab. Don't hesitate to add your opponent's to avoid those pesky <em>gotchas</em>."
+  },
+  "direct-1-text": {
+    "fr": "Pour avoir de meilleurs résultats, soyez plus direct dans votre requête.<br>Par exemple:",
+    "en": "To have better results, try to be direct and more precise in your request.<br>For example:"
+  },
+  "direct-2-text": {
+    "fr": "<em>\"Définis le stratagème Tir en état d'alerte\"</em> aura de meilleurs résultats que <em>\"Qu'est ce que l'état d'alerte\"</em>",
+    "en": "<em>\"Define the overwatch stratagem\"</em> will give much better results than <em>\"What is overwatch?\"</em>"
+  },
+  "sources-text": {
+    "fr": "Par ailleurs, si les résultats sont toujours trop vagues, il est possible de sélectionner uniquement certaines sources pour améliorer ces résultats.<br>Il est possible de changer les sources prises en compte dans la page d'Options.",
+    "en": "Also, if the results are too vague or don't answer your question, try to select more specific sources.<br>You can change which sources are taken into account on the settings page."
+  }
+}
