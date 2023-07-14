@@ -24,6 +24,7 @@ const ChatApp = ({ onNavClicked }) => {
       isUser,
     };
     setMessages((prevMessages) => [newMessage, ...prevMessages]);
+    sessionStorage.setItem('conversation', JSON.stringify(messages));
   };
 
   const getCurrActiveChoiceCookie = () => {
@@ -44,14 +45,21 @@ const ChatApp = ({ onNavClicked }) => {
   };
 
   useEffect(() => {
-    const delay = 200; // Delay in milliseconds
-    const timeoutId = setTimeout(() => {
-      addMessage(chat_app_text_data["greeting-message"][Cookies.get("lang")]);
-    }, delay);
+    const storedConv = sessionStorage.getItem('conversation');
+    console.log(JSON.parse(storedConv))
+    if (storedConv) {
+      setMessages(JSON.parse(storedConv));
+      //  
+    } else {
+      const delay = 200; // Delay in milliseconds
+      const timeoutId = setTimeout(() => {
+        addMessage(chat_app_text_data["greeting-message"][Cookies.get("lang")]);
+      }, delay);
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
   }, []);
 
   const handleSettingsClicked = () => {
@@ -78,7 +86,7 @@ const ChatApp = ({ onNavClicked }) => {
       setIsLoading(true);
       const savedLang = Cookies.get("lang");
       const choiceArray = JSON.parse(getCurrActiveChoiceCookie());
-      const response = await fetch(env_data.apiUrl, {
+      const response = await fetch(env_data.testApiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
