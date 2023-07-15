@@ -86,7 +86,7 @@ const ChatApp = ({ onNavClicked }) => {
       setIsLoading(true);
       const savedLang = Cookies.get("lang");
       const choiceArray = JSON.parse(getCurrActiveChoiceCookie());
-      const response = await fetch(env_data.testApiUrl, {
+      const response = await fetch(env_data.apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
