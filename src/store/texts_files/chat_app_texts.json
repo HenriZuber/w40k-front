@@ -1,7 +1,7 @@
 {
   "greeting-message": {
-    "fr": "Bonjour ! Comment puis-je vous aider ?",
-    "en": "Hello ! How can I assist you ?"
+    "fr": "Bonjour ! Bienvenue sur Imperium Explorer. Comment puis-je vous aider aujourd'hui ?\n\nJuste pour vous informer, je suis un bot alimenté par l'IA conçu pour fournir des informations utiles. Voici quelques points à garder à l'esprit :\n\n- Je n'ai pas de mémoire des messages précédents, je ne peux donc pas construire une conversation basée sur eux.\n- J'excelle pour récupérer et résumer les règles et les informations spécifiques.\n- Malheureusement, il m'est plus difficile de répondre à des questions complexes.\n\nEssayez, demandez-moi \"Définis la règle de Frappe en profondeur\".",
+    "en": "Hello! Welcome to Imperium Explorer. How can I assist you today?\n\nJust to let you know, I'm an AI-powered bot designed to provide helpful information. Here are a few things to keep in mind:\n\n- I don't have memory of previous messages, so I can't build a conversation upon them.\n- I excel at fetching and summarizing rules and specific information.\n- While I strive to assist with complex questions, my expertise may be more limited in those areas.\n\nGive it a try, ask me \"Define the overwatch stratagem\"."
   },
   "error-message": {
     "fr": "Oops! Il y a eu un problème:\n",

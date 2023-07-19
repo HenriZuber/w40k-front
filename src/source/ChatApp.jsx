@@ -24,7 +24,7 @@ const ChatApp = ({ onNavClicked }) => {
       isUser,
     };
     setMessages((prevMessages) => [newMessage, ...prevMessages]);
-    sessionStorage.setItem('conversation', JSON.stringify(messages));
+    sessionStorage.setItem('conversation', JSON.stringify([newMessage, ...messages]));
   };
 
   const getCurrActiveChoiceCookie = () => {
